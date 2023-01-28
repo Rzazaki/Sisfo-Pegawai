@@ -16,16 +16,17 @@ class CreateDataPegawaisTable extends Migration
         Schema::create('data_pegawais', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
-            $table->bigInteger('user_id');
+            // $table->bigInteger('user_id');
             $table->string('nama');
             $table->string('unit');
             $table->string('jenis_kelamin');
             $table->date('tgl_masuk');
             $table->string('status_pgw');
             $table->string('kategori_pgw');
-            $table->string('masker_hari');
-            $table->string('masker_bulan');
-            $table->string('masker_tahun');
+            $table->date('tgl_angkat');
+            $table->integer('masker_hari');
+            $table->integer('masker_bulan');
+            $table->integer('masker_tahun');
             $table->string('jenjab');
             $table->string('pendidikan');
             $table->string('job');

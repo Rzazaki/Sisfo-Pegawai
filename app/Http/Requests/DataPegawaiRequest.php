@@ -34,7 +34,7 @@ class DataPegawaiRequest extends FormRequest
             'tgl_angkat'    => 'required',
             'masker_hari'  => 'required',
             'masker_bulan' => 'required',
-            'masker_bulan' => 'required',
+            'masker_tahun' => 'required',
             'jenjab'  => 'required',
             'pendidikan'    => 'required',
             'job'   => 'required',
@@ -43,7 +43,7 @@ class DataPegawaiRequest extends FormRequest
             'organisasi'  => 'required',
             'agama' => 'required',
             'lokasi' => 'required',
-            'email'         => 'required'
+            'email'         => 'required',
         ];
     }
    

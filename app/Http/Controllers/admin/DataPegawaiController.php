@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\UnitKerja;
 use App\Models\DataPegawai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DataPegawaiRequest;
+use SebastianBergmann\CodeCoverage\Report\Xml\Unit;
 
 class DataPegawaiController extends Controller
 {
@@ -32,9 +35,11 @@ class DataPegawaiController extends Controller
      */
     public function create()
     {
-       
         $title = 'Data Pegawai';
-        return view('pages.admin.data-pegawai.create', compact('title'));
+        $dataunit   = UnitKerja::all();
+
+        // return ($dataunit);
+        return view('pages.admin.data-pegawai.create', compact('title', 'dataunit'));
     }
 
     /**
@@ -46,12 +51,21 @@ class DataPegawaiController extends Controller
     public function store(DataPegawaiRequest $request)
     {
         // $message []
-    //    dd($request);
+        // dd($request);
+        // return $request;
+        $slug = str_replace('', '-', $request->nama);
         $data = $request->all();
+        $data['slug'] = $slug;
+        // $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $slug);
+        // return $data['slug'];
+
+        // $data['slug'] = Auth::user()->slug; 
 
         DataPegawai::create($data);
+
+        // $request->session()->flash('success', 'Data berhasil disimpan!');
         
-        return redirect()->route('pegawai.create')->with('success', 'Data Pribadi anda sukses disimpan!');
+        return redirect()->back('pegawai')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**

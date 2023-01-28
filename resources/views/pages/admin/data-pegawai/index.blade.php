@@ -4,6 +4,7 @@
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 @endsection
 
 @section('content')
@@ -50,38 +51,44 @@
                         </button>
                     </a>
 
-                      <table id="example" class="table table-striped" style="width:100%">
+                 
+                        <table id="example" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>Unit</th>
+                                <th>Tanggal Masuk</th>
+                                <th>Status Pegawai</th>
+                                <th>Kategori Pegawai</th>
+                                <th>Masa Kerja (Hari)</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($pegawai as $dp )
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011-04-25</td>
-                                <td>$320,800</td>
+                                <td>{{ $dp->nama }}</td>
+                                <td>{{ $dp->unit }}</td>
+                                <td>{{ $dp->tgl_masuk }}</td>
+                                <td>{{ $dp->status_pgw }}</td>
+                                <td>{{ $dp->kategori_pgw }}</td>
+                                <td>{{ $dp->masker_hari }}</td>
+                                <td>
+                                    <a href="/pegawai/{{ $dp->slug }}" class="text-white text-decoration-none">
+                                     <button type="button" class="btn btn-primary  fs-x">
+                                        <i class="bi bi-eye"></i>
+                                     </button>
+                                    </a>
+                                   
+                                </td>
                             </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                <td>2011-07-25</td>
-                                <td>$170,750</td>
-                            </tr>
-                        
+                           
+                         @endforeach
                         </tbody>
                 
-        </table>
+                      </table>
+                   
+                      
                 </div>
             </div>
         </div>
