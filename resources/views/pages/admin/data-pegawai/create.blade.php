@@ -97,18 +97,18 @@
                              </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Tanggal Angkat</label>
+                            <label for="inputPassword" class="col-sm-2 col-form-label" >Tanggal Angkat</label>
                             <div class="col-sm-4">
-                                <input required type="date" class="form-control bg-white @error('tgl_angkat') is-invalid @enderror" name="tgl_angkat" value="">
+                                <input required type="date" class="form-control bg-white @error('tgl_angkat') is-invalid @enderror" id="tgl-1" name="tgl_angkat" value="">
                                 @error('tgl_angkat')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-                             <label for="inputPassword" class="col-sm-2 col-form-label">Masa Kerja Hari</label>
+                             <label for="inputPassword" class="col-sm-2 col-form-label" >Masa Kerja Hari</label>
                              <div class="col-sm-4">
-                                <input required type="text" class="form-control bg-white @error('masker_hari') is-invalid @enderror" name="masker_hari" value="">
+                                <input required type="text" class="form-control bg-white @error('masker_hari') is-invalid @enderror" id="masker-hari" name="masker_hari" value="">
                                 @error('masker_hari')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -119,7 +119,7 @@
                         <div class="mb-3 row">
                              <label for="inputPassword" class="col-sm-2 col-form-label">Masa Kerja Bln</label>
                              <div class="col-sm-4">
-                                <input required type="text" class="form-control bg-white @error('masker_bulan') is-invalid @enderror" name="masker_bulan" value="">
+                                <input required type="text" class="form-control bg-white @error('masker_bulan') is-invalid @enderror" id="masker-bulan" name="masker_bulan" value="">
                                 @error('masker_bulan')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -128,7 +128,7 @@
                              </div>
                              <label for="inputPassword" class="col-sm-2 col-form-label">Masa Kerja thn</label>
                              <div class="col-sm-4">
-                                <input required type="text" class="form-control bg-white @error('masker_thn') is-invalid @enderror" name="masker_thn" value="">
+                                <input required type="text" class="form-control bg-white @error('masker_thn') is-invalid @enderror" id="masker-tahun" name="masker_thn" value="">
                                 @error('masker_thn')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -250,5 +250,25 @@
 @endsection
 
 @section('script')
-    
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="/js/moment.js"></script>
+  <script>
+    // alert ("hello");
+    $(document).ready(function () {
+        $('#tgl-1').on('change', function () {
+            // alert($('#tgl-1').val());
+            var masuk = new Date($(this).val());
+            var today = new Date();
+            var selisih_hari = Math.floor((today - masuk) / (1000 * 60 * 60 * 24) )
+            var selisih_bulan = Math.floor((selisih_hari % 365) / 30 );
+            var selisih_tahun = Math.floor((selisih_hari / 365));
+            // var selisih_hari = selisih / parseInt(1000 * 60 * 60 * 24); 
+            // alert (selisih_tahun);
+            $('#masker-hari').val(selisih_hari);
+            $('#masker-bulan').val(selisih_bulan);
+            $('#masker-tahun').val(selisih_tahun);
+            
+        })
+    })
+  </script>
 @endsection

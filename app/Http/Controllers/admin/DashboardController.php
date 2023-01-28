@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\DataPegawai;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -18,8 +19,10 @@ class DashboardController extends Controller
     {
         $title = 'Dashboard';
         $total = User::where('roles','USER')->count();
-        // return $total;
-        return view('pages.dashboard.index', compact('title', 'total'));
+        $pria = DataPegawai::where('jenis_kelamin', 'PRIA')->count();
+        $wanita = DataPegawai::where('jenis_kelamin', 'WANITA')->count();
+        // return $pria;
+        return view('pages.dashboard.index', compact('title', 'total', 'pria', 'wanita'));
     }
 
     /**

@@ -34,7 +34,7 @@
                                 <div class="d-flex flex-column justify-content-around align-items-start employee-stat">
                                     <h5 class="content-desc">Pegawai Pria</h5>
 
-                                    <h3 class="statistics-value">205,399</h3>
+                                    <h3 class="statistics-value">{{ $pria }}</h3>
                                 </div>
 
                             </div>
@@ -48,7 +48,7 @@
                                 <div class="d-flex flex-column justify-content-around align-items-start employee-stat">
                                     <h5 class="content-desc">Pegawai Wanita</h5>
 
-                                    <h3 class="statistics-value">142,593</h3>
+                                    <h3 class="statistics-value">{{ $wanita }}</h3>
                                 </div>
                             </div>
                         </div>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\DataPegawai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\DataPegawaiRequest;
 
 class DataPegawaiController extends Controller
 {
@@ -30,6 +32,7 @@ class DataPegawaiController extends Controller
      */
     public function create()
     {
+       
         $title = 'Data Pegawai';
         return view('pages.admin.data-pegawai.create', compact('title'));
     }
@@ -40,9 +43,15 @@ class DataPegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DataPegawaiRequest $request)
     {
-        //
+        // $message []
+    //    dd($request);
+        $data = $request->all();
+
+        DataPegawai::create($data);
+        
+        return redirect()->route('pegawai.create')->with('success', 'Data Pribadi anda sukses disimpan!');
     }
 
     /**
